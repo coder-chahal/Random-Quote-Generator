@@ -1,0 +1,55 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="animation.css">
+        <link rel="icon" href="logo.png" type="image/x-icon">
+        <script src="main.js"></script>
+        <title>Quote of the day</title>
+    </head>
+    <body>
+    <div class="context">
+    </div>
+    <div class="area" >
+                <ul class="circles">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                </ul>
+        </div >
+<div class="quote-box">
+            <h2>Quote of the day</h2>
+            <blockquote id="quote">Loading.....</blockquote>
+            <span id="author">Loading.....</span>
+            <div>
+                <button class="btn" onclick="getQuote(api_url)">New Quote</button>
+                <button class="btn" onclick="tweet()"><i class="bi bi-twitter"></i>Tweet</button>
+            </div>
+            <p>Designed with💙 by Aakanksha Chahal</p>
+        </div>
+    <script>
+            const quote=document.getElementById("quote");
+            const author=document.getElementById("author");
+            const api_url="https://api.quotable.io/random";
+            async function getQuote(url){
+                const response=await fetch(url);
+                var data= await response.json();
+                quote.innerHTML= data.content; 
+                author.innerHTML= data.author; 
+            }
+            getQuote(api_url);
+            function tweet(){
+                window.open("https://twitter.com/intent/tweet?text=" +quote.innerHTML, "Tweet Window")
+            }
+            </script>
+    </body>
+    </html>
